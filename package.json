@@ -1,0 +1,18 @@
+{
+  "name": "huntlog",
+  "private": true,
+  "packageManager": "bun@1.4.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "relay": "mkdir -p .relay && cd .relay && npx -y @evolu/relay@4"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.turbo/
+.vite/
+.relay/
+dev-dist/
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+legacy-export*.json
