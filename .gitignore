@@ -12,3 +12,4 @@ dev-dist/
 *.log
 legacy-export*.json
 .vercel
+*.tsbuildinfo
