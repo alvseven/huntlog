@@ -1,0 +1,49 @@
+{
+  "name": "huntlog-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for huntlog: let AI agents read and update your job search, end-to-end encrypted",
+  "license": "MIT",
+  "author": "alvseven",
+  "homepage": "https://huntlog.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvseven/huntlog.git",
+    "directory": "packages/mcp"
+  },
+  "bugs": "https://github.com/alvseven/huntlog/issues",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "job-search",
+    "huntlog",
+    "local-first",
+    "evolu"
+  ],
+  "type": "module",
+  "bin": {
+    "huntlog-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=24.20.0"
+  },
+  "scripts": {
+    "build": "rm -rf dist && bun build src/index.ts --target node --splitting --outdir dist --external @evolu/common --external @evolu/nodejs --external @modelcontextprotocol/sdk --external zod",
+    "typecheck": "tsc -p .",
+    "test": "bun run build && node --test test/*.test.ts",
+    "prepublishOnly": "bun run typecheck && bun run test"
+  },
+  "dependencies": {
+    "@evolu/common": "8.23.2",
+    "@evolu/nodejs": "4.3.4",
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@huntlog/shared": "workspace:*",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^26.6.5"
+  }
+}

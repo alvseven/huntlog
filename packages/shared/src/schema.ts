@@ -1,0 +1,70 @@
+import * as Evolu from "@evolu/common";
+
+const Text = Evolu.nullOr(Evolu.String);
+
+export const ApplicationId = Evolu.id("Application");
+export type ApplicationId = typeof ApplicationId.Output;
+export const PrepNoteId = Evolu.id("PrepNote");
+export type PrepNoteId = typeof PrepNoteId.Output;
+export const LeadId = Evolu.id("Lead");
+export type LeadId = typeof LeadId.Output;
+export const ResourceId = Evolu.id("Resource");
+export type ResourceId = typeof ResourceId.Output;
+export const ResumeId = Evolu.id("Resume");
+export type ResumeId = typeof ResumeId.Output;
+
+export const Schema = {
+  application: {
+    id: ApplicationId,
+    company: Evolu.String,
+    role: Evolu.String,
+    jobLink: Text,
+    source: Text,
+    dateApplied: Evolu.String,
+    stage: Evolu.String,
+    nextAction: Text,
+    nextActionDue: Text,
+    contactName: Text,
+    contactInfo: Text,
+    compRange: Text,
+    resumeId: Evolu.nullOr(ResumeId),
+    notes: Text,
+    tags: Text,
+    addedAt: Text,
+  },
+  prepNote: {
+    id: PrepNoteId,
+    applicationId: ApplicationId,
+    stage: Evolu.String,
+    note: Evolu.String,
+    addedAt: Text,
+  },
+  lead: {
+    id: LeadId,
+    company: Evolu.String,
+    role: Text,
+    link: Text,
+    source: Text,
+    notes: Text,
+    addedAt: Text,
+  },
+  resource: {
+    id: ResourceId,
+    label: Evolu.String,
+    url: Evolu.String,
+    notes: Text,
+    addedAt: Text,
+  },
+  resume: {
+    id: ResumeId,
+    label: Evolu.String,
+    originalFilename: Evolu.String,
+    mimeType: Evolu.String,
+    data: Evolu.String,
+    addedAt: Text,
+  },
+};
+
+export type AppSchema = typeof Schema;
+
+export const createQuery = Evolu.createQueryBuilder(Schema);

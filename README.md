@@ -24,6 +24,24 @@ Sync is built on [Evolu](https://www.evolu.dev).
 - Keeps working when your connection drops, and syncs when it comes back
 - Light and dark mode, on desktop and phone
 
+## Use it from an AI agent
+
+[huntlog-mcp](packages/mcp) is an MCP server that lets Claude, Cursor and other agents read and update your search. It runs on your machine with your recovery phrase, and its changes sync to your devices like any other device's.
+
+```json
+{
+  "mcpServers": {
+    "huntlog": {
+      "command": "npx",
+      "args": ["-y", "huntlog-mcp"],
+      "env": { "HUNTLOG_RECOVERY_PHRASE": "your twenty four words ..." }
+    }
+  }
+}
+```
+
+See [its README](packages/mcp/README.md) for setup, tools and what to keep in mind before giving an agent your phrase.
+
 ## Run it locally
 
 Requires [Bun](https://bun.sh) and Node.js 24 or newer.
@@ -42,13 +60,16 @@ bun run dev
 | --- | --- | --- |
 | `VITE_RELAY_URL` | `ws://localhost:4000` in development, Evolu's public relay in production | The relay the app syncs through |
 
-To host your own relay, run `npx @evolu/relay` or the `evoluhq/relay` Docker image, then point `VITE_RELAY_URL` at it.
+### Self-host the relay
+
+Run `npx @evolu/relay` or the `evoluhq/relay` Docker image, then point `VITE_RELAY_URL` (and `HUNTLOG_RELAY_URL` for huntlog-mcp) at it.
 
 ## Project structure
 
 ```
 apps/app          the web app and landing page (React, Vite, Tailwind)
-packages/shared   shared types and constants
+packages/mcp      huntlog-mcp, the MCP server
+packages/shared   the data schema and store, shared by the app and the MCP server
 scripts           maintenance scripts
 ```
 

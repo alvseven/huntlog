@@ -1,4 +1,5 @@
-import { getEvolu, type ApplicationId, type ResumeId } from "./evolu";
+import type { ApplicationId, ResumeId } from "@huntlog/shared/schema";
+import { getEvolu } from "./evolu";
 
 type Row = Record<string, unknown>;
 
