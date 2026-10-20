@@ -67,6 +67,7 @@ export default function ApplicationDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [app, setApp] = useState<Application | null>(null);
+  const [missing, setMissing] = useState(false);
   const [notes, setNotes] = useState<PrepNote[]>([]);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -76,17 +77,36 @@ export default function ApplicationDetail() {
 
   const load = () => {
     if (!id) return;
-    api.getApplication(id).then((a) => {
-      setApp(a);
-      setNewNoteStage(a.stage);
-    });
+    api.getApplication(id).then(
+      (a) => {
+        setApp(a);
+        setMissing(false);
+        setNewNoteStage(a.stage);
+      },
+      () => setMissing(true)
+    );
     api.listNotes(id).then(setNotes);
   };
 
   const version = useDataVersion();
   useEffect(load, [id, version]);
 
-  if (!app || !id) {
+  if (missing || !id) {
+    return (
+      <div className="flex flex-col items-start gap-4 py-12">
+        <h1 className="text-xl font-semibold">This application doesn't exist anymore</h1>
+        <p className="text-muted-foreground">It may have been deleted on another device.</p>
+        <Button asChild variant="outline">
+          <Link to="/applications">
+            <ArrowLeft className="size-4" />
+            Back to applications
+          </Link>
+        </Button>
+      </div>
+    );
+  }
+
+  if (!app) {
     return (
       <div className="flex flex-col gap-6">
         <Skeleton className="h-6 w-40" />
