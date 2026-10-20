@@ -11,3 +11,4 @@ dev-dist/
 .DS_Store
 *.log
 legacy-export*.json
+.vercel
