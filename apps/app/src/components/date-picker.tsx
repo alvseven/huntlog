@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useFieldId } from "@/components/field";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -26,6 +27,7 @@ export function DatePicker({
   clearable?: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const fieldId = useFieldId();
   const selected = value ? fromISODate(value) : undefined;
 
   return (
@@ -34,6 +36,8 @@ export function DatePicker({
         <Button
           type="button"
           variant="outline"
+          id={fieldId}
+          aria-labelledby={fieldId && `${fieldId}-label ${fieldId}`}
           className={cn("w-full justify-start font-normal", !value && "text-muted-foreground")}
         >
           <CalendarIcon className="size-4" />
