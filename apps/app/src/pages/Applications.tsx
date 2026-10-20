@@ -70,7 +70,7 @@ export default function Applications() {
         </div>
         <div className="flex items-center gap-2">
           <Select value={stageFilter} onValueChange={setStageFilter}>
-            <SelectTrigger className="w-44 sm:w-52">
+            <SelectTrigger className="w-44 sm:w-52" aria-label="Filter by stage">
               <SelectValue placeholder="All stages" />
             </SelectTrigger>
             <SelectContent>

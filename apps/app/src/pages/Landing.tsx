@@ -144,7 +144,10 @@ function Nav() {
           <LogoMark className="size-6" />
           huntlog
         </Link>
-        <nav className="hidden items-center gap-7 text-base text-muted-foreground md:flex">
+        <nav
+          aria-label="Main"
+          className="hidden items-center gap-7 text-base text-muted-foreground md:flex"
+        >
           <a href="#features" className="transition-colors hover:text-foreground">
             Features
           </a>
@@ -241,14 +244,20 @@ function Hero() {
             </Button>
           </div>
         </div>
-        <div id="demo" data-reveal style={stagger(3)} className="mt-16 scroll-mt-6 md:mt-20">
+        <section
+          aria-label="Live demo"
+          id="demo"
+          data-reveal
+          style={stagger(3)}
+          className="mt-16 scroll-mt-6 md:mt-20"
+        >
           <div className="rounded-[2rem] bg-muted p-2 sm:p-3">
             <LiveDemo />
           </div>
           <p className="mt-4 text-center text-sm text-muted-foreground">
             This is the real app running on sample data. Click around; nothing you do here is saved.
           </p>
-        </div>
+        </section>
       </Container>
     </section>
   );
@@ -552,7 +561,10 @@ function Footer() {
           <LogoMark className="size-6" />
           huntlog
         </Link>
-        <nav className="flex flex-wrap items-center gap-x-7 gap-y-3 text-base text-muted-foreground">
+        <nav
+          aria-label="Footer"
+          className="flex flex-wrap items-center gap-x-7 gap-y-3 text-base text-muted-foreground"
+        >
           <a href="#features" className="transition-colors hover:text-foreground">
             Features
           </a>

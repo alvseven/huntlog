@@ -38,16 +38,21 @@ function NavLinks() {
 }
 
 export default function App({ demo = false }: { demo?: boolean }) {
+  const Header = demo ? "div" : "header";
+  const Main = demo ? "div" : "main";
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
+      <Header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex items-center justify-between gap-4 py-3.5 md:grid md:grid-cols-[1fr_auto_1fr]">
             <span className="flex items-center gap-2 font-display text-sm font-semibold tracking-tight">
               <LogoMark className="size-5 text-foreground" />
               huntlog
             </span>
-            <nav className="hidden items-center gap-6 justify-self-center md:flex">
+            <nav
+              aria-label="App sections"
+              className="hidden items-center gap-6 justify-self-center md:flex"
+            >
               <NavLinks />
             </nav>
             {demo ? (
@@ -70,12 +75,15 @@ export default function App({ demo = false }: { demo?: boolean }) {
               </div>
             )}
           </div>
-          <nav className="-mx-6 flex items-center gap-6 overflow-x-auto px-6 pb-3 md:hidden">
+          <nav
+            aria-label="App sections"
+            className="-mx-6 flex items-center gap-6 overflow-x-auto px-6 pb-3 md:hidden"
+          >
             <NavLinks />
           </nav>
         </div>
-      </header>
-      <main className="mx-auto max-w-6xl px-6 py-10">
+      </Header>
+      <Main className="mx-auto max-w-6xl px-6 py-10">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/applications" element={<Applications />} />
@@ -85,7 +93,7 @@ export default function App({ demo = false }: { demo?: boolean }) {
           {!demo && <Route path="/settings" element={<Settings />} />}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </main>
+      </Main>
     </div>
   );
 }

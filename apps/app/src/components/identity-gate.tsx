@@ -41,7 +41,7 @@ function Onboarding({ onReady }: { onReady: () => void }) {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-6">
+    <main className="flex min-h-screen items-center justify-center bg-background px-6">
       <div className="w-full max-w-md space-y-8">
         <div className="space-y-4">
           <Link to="/" aria-label="huntlog home" className="inline-block">
@@ -94,6 +94,6 @@ function Onboarding({ onReady }: { onReady: () => void }) {
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 }
