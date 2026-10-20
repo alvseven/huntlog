@@ -2,7 +2,7 @@
 
 Your job hunt, organized. huntlog tracks applications, follow-ups, leads, resumes and interview prep notes, and keeps all of it private.
 
-**[huntlog.dev](https://huntlog.dev)**
+**[huntlog.dev](https://huntlog.dev)** · open the app at **[app.huntlog.dev](https://app.huntlog.dev)**
 
 ## Private by design
 
@@ -34,7 +34,7 @@ bun run relay
 bun run dev
 ```
 
-`bun run relay` starts a local sync relay on `ws://localhost:4000`, and the app runs at `http://localhost:5173`.
+`bun run relay` starts a local sync relay on `ws://localhost:4000`, the landing page runs at `http://localhost:5173`, and the app runs at `http://app.localhost:5173`.
 
 ## Configuration
 

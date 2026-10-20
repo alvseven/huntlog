@@ -1,20 +1,15 @@
 import { useState, type ReactNode } from "react";
-import { Link, Route, Routes, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { LogoMark } from "@/components/logo-mark";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { createNewIdentity, getStoredMnemonic, restoreIdentity } from "@/lib/evolu";
-import Landing from "@/pages/Landing";
+import { landingUrl } from "@/lib/hosts";
 
 export function IdentityGate({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(() => getStoredMnemonic() !== null);
   if (ready) return children;
-  return (
-    <Routes>
-      <Route path="/start" element={<Onboarding onReady={() => setReady(true)} />} />
-      <Route path="*" element={<Landing />} />
-    </Routes>
-  );
+  return <Onboarding onReady={() => setReady(true)} />;
 }
 
 function Onboarding({ onReady }: { onReady: () => void }) {
@@ -44,9 +39,9 @@ function Onboarding({ onReady }: { onReady: () => void }) {
     <main className="flex min-h-screen items-center justify-center bg-background px-6">
       <div className="w-full max-w-md space-y-8">
         <div className="space-y-4">
-          <Link to="/" aria-label="huntlog home" className="inline-block">
+          <a href={landingUrl} aria-label="huntlog home" className="inline-block">
             <LogoMark className="size-10 text-foreground" />
-          </Link>
+          </a>
           <h1 className="font-display text-3xl font-semibold tracking-tight">huntlog</h1>
           <p className="text-muted-foreground">
             Track your job hunt. Your data lives on your devices and syncs end-to-end encrypted, so

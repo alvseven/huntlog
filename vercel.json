@@ -37,5 +37,62 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/start",
+      "has": [
+        {
+          "type": "host",
+          "value": "huntlog.dev"
+        }
+      ],
+      "destination": "https://app.huntlog.dev/start",
+      "permanent": false
+    },
+    {
+      "source": "/settings",
+      "has": [
+        {
+          "type": "host",
+          "value": "huntlog.dev"
+        }
+      ],
+      "destination": "https://app.huntlog.dev/settings",
+      "permanent": false
+    },
+    {
+      "source": "/leads",
+      "has": [
+        {
+          "type": "host",
+          "value": "huntlog.dev"
+        }
+      ],
+      "destination": "https://app.huntlog.dev/leads",
+      "permanent": false
+    },
+    {
+      "source": "/resources",
+      "has": [
+        {
+          "type": "host",
+          "value": "huntlog.dev"
+        }
+      ],
+      "destination": "https://app.huntlog.dev/resources",
+      "permanent": false
+    },
+    {
+      "source": "/applications/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "huntlog.dev"
+        }
+      ],
+      "destination": "https://app.huntlog.dev/applications/:path*",
+      "permanent": false
+    }
   ]
 }

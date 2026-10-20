@@ -15,6 +15,8 @@ import {
 import { LogoMark } from "@/components/logo-mark";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
+import { getStoredMnemonic } from "@/lib/evolu";
+import { appUrl } from "@/lib/hosts";
 import { cn } from "@/lib/utils";
 import { LiveDemo } from "./landing/live-demo";
 
@@ -115,6 +117,7 @@ export default function Landing() {
   const ref = useReveal();
   return (
     <div ref={ref} className="min-h-svh overflow-x-clip bg-background text-foreground">
+      <MovedNotice />
       <Nav />
       <main>
         <Hero />
@@ -125,6 +128,34 @@ export default function Landing() {
         <FinalCta />
       </main>
       <Footer />
+    </div>
+  );
+}
+
+function MovedNotice() {
+  const [phrase] = useState(getStoredMnemonic);
+  const [copied, setCopied] = useState(false);
+  if (!phrase) return null;
+  const copy = async () => {
+    await navigator.clipboard.writeText(phrase);
+    setCopied(true);
+  };
+  return (
+    <div role="region" aria-label="huntlog moved" className="bg-foreground text-background">
+      <Container className="flex flex-col gap-3 py-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+        <p>
+          The app moved to <span className="font-medium">{new URL(appUrl).host}</span>. Copy your recovery
+          phrase from this browser and restore it there. Your data comes with it.
+        </p>
+        <div className="flex shrink-0 gap-2">
+          <Button size="sm" variant="secondary" className="press rounded-full" onClick={copy}>
+            {copied ? "Copied" : "Copy recovery phrase"}
+          </Button>
+          <Button asChild size="sm" variant="secondary" className="press rounded-full">
+            <a href={`${appUrl}/start?restore`}>Open the app</a>
+          </Button>
+        </div>
+      </Container>
     </div>
   );
 }
@@ -165,7 +196,7 @@ function Nav() {
         <div className="flex items-center gap-1">
           <ThemeToggle />
           <Button asChild size="sm" className="press rounded-full px-4">
-            <Link to="/start">Open app</Link>
+            <a href={appUrl}>Open app</a>
           </Button>
         </div>
       </Container>
@@ -229,10 +260,10 @@ function Hero() {
               size="lg"
               className="press h-12 w-full rounded-full px-7 text-base sm:w-auto"
             >
-              <Link to="/start">
+              <a href={`${appUrl}/start`}>
                 Start tracking, free
                 <ArrowRight className="size-4" />
-              </Link>
+              </a>
             </Button>
             <Button
               asChild
@@ -530,10 +561,10 @@ function FinalCta() {
               size="lg"
               className="press h-12 w-full rounded-full px-7 text-base sm:w-auto"
             >
-              <Link to="/start">
+              <a href={`${appUrl}/start`}>
                 Start fresh
                 <ArrowRight className="size-4" />
-              </Link>
+              </a>
             </Button>
             <Button
               asChild
@@ -541,7 +572,7 @@ function FinalCta() {
               variant="outline"
               className="press h-12 w-full rounded-full border-transparent bg-background px-7 text-base hover:bg-background/70 sm:w-auto"
             >
-              <Link to="/start?restore">I have a recovery phrase</Link>
+              <a href={`${appUrl}/start?restore`}>I have a recovery phrase</a>
             </Button>
           </div>
         </div>
