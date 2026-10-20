@@ -159,13 +159,12 @@ function base64FromBytes(bytes: Uint8Array): string {
   return btoa(binary);
 }
 
-export const watchedQueries = [
-  applicationsQuery,
-  prepNotesQuery,
-  leadsQuery,
-  resourcesQuery,
-  resumesQuery,
-];
+// Evolu serves a subscribed query from its cache until the subscription refreshes,
+// so a read right after a write could miss it. Watching separate queries keeps
+// the store's reads unsubscribed and fresh.
+export const watchedQueries = (
+  ["application", "prepNote", "lead", "resource", "resume"] as const
+).map((table) => createQuery((db) => db.selectFrom(table).select(["id", "updatedAt"])));
 
 export type HuntlogEvolu = Evolu.Evolu<AppSchema>;
 
