@@ -1,5 +1,6 @@
 export const STAGES = [
   "applied",
+  "assessment",
   "recruiter_screen",
   "technical_interview",
   "offer",
@@ -13,6 +14,7 @@ export const CLOSED_STAGES: Stage[] = ["rejected", "accepted"];
 
 export const STAGE_LABELS: Record<Stage, string> = {
   applied: "Applied",
+  assessment: "Assessment",
   recruiter_screen: "Recruiter Screen",
   technical_interview: "Technical Interview",
   offer: "Offer",
