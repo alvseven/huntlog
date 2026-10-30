@@ -23,6 +23,7 @@ import { dayDiff, relativeDue } from "@/lib/dates";
 import { useDataVersion } from "@/lib/use-data-version";
 const FUNNEL_COLOR: Record<Stage, string> = {
   applied: "var(--stage-applied-fg)",
+  assessment: "var(--stage-assessment-fg)",
   recruiter_screen: "var(--stage-recruiter-fg)",
   technical_interview: "var(--stage-technical-fg)",
   offer: "var(--stage-offer-fg)",
@@ -30,7 +31,7 @@ const FUNNEL_COLOR: Record<Stage, string> = {
   accepted: "var(--stage-accepted-fg)",
 };
 
-const IN_PROCESS_STAGES: Stage[] = ["recruiter_screen", "technical_interview", "offer"];
+const IN_PROCESS_STAGES: Stage[] = ["assessment", "recruiter_screen", "technical_interview", "offer"];
 const PERIODS = [7, 14, 30] as const;
 type Period = (typeof PERIODS)[number];
 

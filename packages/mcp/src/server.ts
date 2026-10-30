@@ -35,7 +35,7 @@ const server = new McpServer(
   { name: "huntlog", version },
   {
     instructions:
-      "huntlog is the user's job search tracker. Applications move through the stages applied → recruiter_screen → technical_interview → offer, and end as rejected or accepted. Leads are jobs to apply to later. Every change syncs, end-to-end encrypted, to the user's other devices. Check list_applications before adding one, to avoid duplicates.",
+      "huntlog is the user's job search tracker. Applications move through the stages applied → assessment → recruiter_screen → technical_interview → offer, and end as rejected or accepted. Leads are jobs to apply to later. Every change syncs, end-to-end encrypted, to the user's other devices. Check list_applications before adding one, to avoid duplicates.",
   }
 );
 registerTools(server, ready);
