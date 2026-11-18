@@ -31,6 +31,7 @@ import { SourceSelect } from "@/components/source-select";
 import { SOURCE_LABELS, type Source } from "@huntlog/shared";
 import { SourceIcon } from "@/components/source-icon";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { PageCount } from "@/components/page-count";
 
 import { useDataVersion } from "@/lib/use-data-version";
 export default function Leads() {
@@ -69,7 +70,10 @@ export default function Leads() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h1 className="font-display text-2xl font-semibold tracking-tight">Leads</h1>
+          <h1 className="font-display text-2xl font-semibold tracking-tight">
+            Leads
+            {leads && <PageCount count={leads.length} />}
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Companies you're considering, not yet applied.
           </p>
