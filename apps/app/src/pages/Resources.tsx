@@ -27,6 +27,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
 import { Field } from "@/components/field";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { PageCount } from "@/components/page-count";
 
 import { useDataVersion } from "@/lib/use-data-version";
 function hostname(url: string) {
@@ -75,7 +76,10 @@ export default function Resources() {
     <div className="flex flex-col gap-8">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h1 className="font-display text-2xl font-semibold tracking-tight">Resources</h1>
+          <h1 className="font-display text-2xl font-semibold tracking-tight">
+            Resources
+            {links && <PageCount count={links.length} />}
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Job boards, tools, and other useful links for your search.
           </p>
@@ -161,7 +165,10 @@ export default function Resources() {
       )}
 
       <div>
-        <h2 className="mb-3 text-lg font-semibold tracking-tight">Uploaded resumes</h2>
+        <h2 className="mb-3 text-lg font-semibold tracking-tight">
+          Uploaded resumes
+          {resumes && <PageCount count={resumes.length} />}
+        </h2>
         <Card>
           <CardHeader>
             <CardTitle>All versions you've uploaded from an application form</CardTitle>

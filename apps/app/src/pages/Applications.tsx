@@ -39,6 +39,7 @@ import { Field } from "@/components/field";
 import { SourceSelect } from "@/components/source-select";
 import { DatePicker } from "@/components/date-picker";
 import { ResumePicker } from "@/components/resume-picker";
+import { PageCount } from "@/components/page-count";
 import { relativeDue } from "@/lib/dates";
 
 import { useDataVersion } from "@/lib/use-data-version";
@@ -65,7 +66,10 @@ export default function Applications() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="font-display text-2xl font-semibold tracking-tight">Applications</h1>
+          <h1 className="font-display text-2xl font-semibold tracking-tight">
+            Applications
+            {apps && <PageCount count={filtered.length} total={apps.length} />}
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">Everything you've applied to.</p>
         </div>
         <div className="flex items-center gap-2">
